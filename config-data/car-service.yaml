@@ -3,3 +3,11 @@ server:
 spring:
   application:
     name: car-service
+eureka:
+  client:
+    fetch-regostry: true
+    registerWithEureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    instance:
+      hostname: localhost
