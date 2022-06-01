@@ -1,5 +1,5 @@
 server:
-  port: 8003
+  port: ${PORT:${SERVER_PORT:0}}
 spring:
   application:
     name: moto-service
@@ -10,4 +10,5 @@ eureka:
     service-url:
       default-zone: http://localhost:8761/eureka
     instance:
-      hostname: localhost
+      hostname:
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
