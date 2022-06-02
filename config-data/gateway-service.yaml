@@ -1,0 +1,33 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: car-service
+eureka:
+  client:
+    fetch-regostry: true
+    registerWithEureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    instance:
+      hostname: localhost
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes: 
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
+        - id: car-service
+          uri: lb://car-service
+          predicates:
+            - Path=/car/**
+        - id: moto-service
+          uri: lb://moto-service
+          predicates:
+            - Path=/moto/**
