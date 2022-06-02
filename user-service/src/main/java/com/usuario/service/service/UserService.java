@@ -38,13 +38,17 @@ public class UserService {
 	
 	public List<Car> getCars(Long usuarioID)
 	{
-		List<Car> carros = restTemplate.getForObject("http://localhost:8082/car/user/" + usuarioID, List.class);
+		//List<Car> carros = restTemplate.getForObject("http://localhost:8082/car/user/" + usuarioID, List.class);
+		
+		/*Al usar el balanceo de carga debemos de cambiar la Uri por la que indicamos en el gateway*/
+		List<Car> carros = restTemplate.getForObject("http://car-service/car/user/" + usuarioID, List.class);
 		return carros;
 	}
 
 	public List<Moto> getMotos(Long usuarioID)
 	{
-		List<Moto> motos = restTemplate.getForObject("http://localhost:8083/moto/user/" + usuarioID, List.class);
+		//List<Moto> motos = restTemplate.getForObject("http://localhost:8083/moto/user/" + usuarioID, List.class);
+		List<Moto> motos = restTemplate.getForObject("http://moto-service/moto/user/" + usuarioID, List.class);
 		return motos;
 	}
 	
