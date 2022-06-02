@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: car-service
+    name: gateway-service
 eureka:
   client:
     fetch-regostry: true
